@@ -10,3 +10,5 @@ console.log(store.getState());
 store.dispatch(decrement());
 store.dispatch(decrement());
 console.log(store.getState());
+store.dispatch(decrement());
+console.log(store.getState());
