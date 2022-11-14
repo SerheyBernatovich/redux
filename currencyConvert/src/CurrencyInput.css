@@ -17,4 +17,6 @@ input {
 }
 select {
   padding: 15px;
+  background: black;
+  border-radius: 15px;
 }

@@ -12,17 +12,24 @@ function App() {
   const [rates, setRates] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(
-        'http://data.fixer.io/api/latest?access_key=0ce522574c9b9c51f85813161ed6c284'
-      )
-      .then((response) => {
-        setRates(response.data.rates);
+    fetch(
+      'http://data.fixer.io/api/latest?access_key=0ce522574c9b9c51f85813161ed6c284'
+    )
+      .then((rec) => rec.json())
+      .then((data) => {
+        setRates(data.rates);
       });
+    // axios
+    //   .get(
+    //     'http://data.fixer.io/api/latest?access_key=0ce522574c9b9c51f85813161ed6c284'
+    //   )
+    //   .then((response) => {
+    //     setRates(response.data.rates);
+    //   });
   }, []);
 
   useEffect(() => {
-    if (!rates) {
+    if (!!rates) {
       function init() {
         handleAmount1Change(1);
       }
@@ -31,7 +38,7 @@ function App() {
   }, [rates]);
 
   function format(number) {
-    return number.toFixed(4);
+    return number.toFixed(2);
   }
 
   function handleAmount1Change(amount1) {
